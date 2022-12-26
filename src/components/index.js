@@ -1,0 +1,5 @@
+export {default as App} from './app/App'
+export {default as Navbar} from './navbar/Navbar'
+export {default as Sidebar} from './sidebar/Sidebar'
+export {default as Surah} from './surah/Surah'
+export {default as SurahCard} from './surah-card/Surah-card'
