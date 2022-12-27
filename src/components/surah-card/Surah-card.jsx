@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom"
+
 const SurahCard = ({surah}) => {
+
+  const navigate=useNavigate()
+
   return ( 
-    <div className="p-5 bg-white rounded-xl w-full flex items-start flex-col space-y-7 cursor-pointer group hover:bg-primary hover:shadow-2xl duration-300">
+    <div className="p-5 bg-white rounded-xl w-full flex items-start flex-col space-y-7 cursor-pointer group hover:bg-primary hover:shadow-2xl duration-300"
+    onClick={()=>navigate(`/surah-detail/${surah.number}`)}>
       <div className="flex items-center justify-between w-full">
       <span className="px-3 py-1 text-spanColor rounded-full bg-spanBg">
         {surah.number}
