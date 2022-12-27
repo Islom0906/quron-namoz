@@ -10,7 +10,6 @@ const AudioPlayer = ({ audio }) => {
     audioElem.current.pause()
     audioElem.current.play()
     setIsPlaying(!isPlaying);
-    console.log(isPlaying);
   };
 
   const onPlaying = () => {
@@ -31,7 +30,6 @@ const AudioPlayer = ({ audio }) => {
     const offset = e.nativeEvent.offsetX;
     const divProgress = (offset / width) * 100;
     audioElem.current.currentTime = (divProgress / 100) * audioTime.length;
-    console.log((divProgress / 100) * audioTime.length);
   };
 
   useEffect(() => {
@@ -40,7 +38,6 @@ const AudioPlayer = ({ audio }) => {
     } else {
       audioElem.current.pause();
     }
-    console.log();
 
   }, [isPlaying]);
 
