@@ -6,10 +6,11 @@ const AudioPlayer = ({ audio }) => {
   const audioElem = useRef();
   const clickRef = useRef();
 
+ 
+
   const PlayPause = () => {
-    audioElem.current.pause()
-    audioElem.current.play()
     setIsPlaying(!isPlaying);
+    console.log(audioElem);
   };
 
   const onPlaying = () => {
@@ -20,7 +21,7 @@ const AudioPlayer = ({ audio }) => {
       progress: (ct / duration) * 100,
       length: duration,
     }));
-    if (duration === ct) {
+    if (audioElem.current.ended) {
       setAudioTime((prewState) => ({ ...prewState, progress: 0 }));
       setIsPlaying(false);
     }
@@ -38,7 +39,6 @@ const AudioPlayer = ({ audio }) => {
     } else {
       audioElem.current.pause();
     }
-
   }, [isPlaying]);
 
   return (
@@ -53,6 +53,7 @@ const AudioPlayer = ({ audio }) => {
           className="w-0 h-full bg-primary rounded-full "
           style={{ width: `${audioTime.progress}%` }}
         ></div>
+      
       </div>
       <div className="flex  items-center justify-center mt-5">
         <button onClick={PlayPause}>
