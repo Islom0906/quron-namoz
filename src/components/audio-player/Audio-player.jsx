@@ -1,26 +1,28 @@
 import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { seletedAudio } from "../../slice/surahDetail";
 
-const AudioPlayer = ({ audio }) => {
+const AudioPlayer = ({ audios ,ind}) => {
   const [audioTime, setAudioTime] = useState({});
   const [isPlaying, setIsPlaying] = useState(false);
+  const {audio}=useSelector(state=>state.surahDetail)
+  const dispatch=useDispatch()
   const audioElem = useRef();
   const clickRef = useRef();
 
- 
+
 
   const PlayPause = () => {
-    setIsPlaying(!isPlaying);
     console.log(audioElem);
+    dispatch(seletedAudio(audios[ind]?.audio))
+    setIsPlaying(!isPlaying);
   };
+
 
   const onPlaying = () => {
     const duration = audioElem.current.duration;
     const ct = audioElem.current.currentTime;
-    setAudioTime((prewState) => ({
-      ...prewState,
-      progress: (ct / duration) * 100,
-      length: duration,
-    }));
+    setAudioTime((prewState) => ({ ...prewState, progress: (ct / duration) * 100, length: duration, }));
     if (audioElem.current.ended) {
       setAudioTime((prewState) => ({ ...prewState, progress: 0 }));
       setIsPlaying(false);
@@ -53,7 +55,7 @@ const AudioPlayer = ({ audio }) => {
           className="w-0 h-full bg-primary rounded-full "
           style={{ width: `${audioTime.progress}%` }}
         ></div>
-      
+
       </div>
       <div className="flex  items-center justify-center mt-5">
         <button onClick={PlayPause}>

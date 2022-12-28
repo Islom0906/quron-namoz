@@ -5,8 +5,8 @@ const SurahSerive={
     const {data}= await axios.get()
     return data
   },
-  async getSurahDetail(number){
-    const {data}=await axios.get(`/${number}/ar.alafasy`)
+  async getSurahDetail(number,author){
+    const {data}=await axios.get(`/${number}/${author}`)
     return data
   },
   async getSurahText(number,lang){
