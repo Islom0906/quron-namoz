@@ -4,7 +4,9 @@ const initialState = {
   isLoading: false,
   surahDetail: [],
   audio:"",
+  audioId:"",
   author:'ar.alafasy',
+  isPlaying:false,
   error: null
 }
 
@@ -27,8 +29,14 @@ export const SurahDetailSlice = createSlice({
     },
     selectedAuthor:(state,{payload})=>{
       state.author=payload
+    },
+    setIsPlaying:(state,{payload})=>{
+      state.isPlaying=payload
+    },
+    setAudioId:(state,{payload})=>{
+      state.audioId=payload
     }
   }
 })
-export const {getSurahDetailFailure,getSurahDetailSuccess,getSurahDetailStart,seletedAudio,selectedAuthor} = SurahDetailSlice.actions
+export const {getSurahDetailFailure,getSurahDetailSuccess,getSurahDetailStart,seletedAudio,selectedAuthor,setIsPlaying,setAudioId} = SurahDetailSlice.actions
 export default SurahDetailSlice.reducer

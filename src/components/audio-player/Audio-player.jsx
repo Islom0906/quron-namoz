@@ -1,59 +1,61 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { seletedAudio } from "../../slice/surahDetail";
+import { seletedAudio, setIsPlaying, setAudioId } from "../../slice/surahDetail";
 
-const AudioPlayer = ({ audios, ind }) => {
-  const [audioTime, setAudioTime] = useState({});
-  const [isPlaying, setIsPlaying] = useState(false);
-  const { audio } = useSelector(state => state.surahDetail)
+const AudioPlayer = ({ audios, ind, }) => {
+  // const [audioTime, setAudioTime] = useState({});
+  const [id, setId] = useState('')
+  const { audio, isPlaying, audioId } = useSelector(state => state.surahDetail)
   const dispatch = useDispatch()
-  const audioElem = useRef();
-  const clickRef = useRef();
-
-
+  // const audioElem = useRef();
+  // const clickRef = useRef();
+  console.log(isPlaying);
 
   const PlayPause = () => {
     dispatch(seletedAudio(audios[ind]?.audio))
-    setIsPlaying(!isPlaying);
+    dispatch(setIsPlaying(!isPlaying))
+    dispatch(setAudioId(audios[ind]?.number))
+    setId(audios[ind]?.number)
   };
 
 
-  const onPlaying = () => {
-    const duration = audioElem.current.duration;
-    const ct = audioElem.current.currentTime;
-    setAudioTime((prewState) => ({ ...prewState, progress: (ct / duration) * 100, length: duration, }));
-    if (audioElem.current.ended) {
-      setAudioTime((prewState) => ({ ...prewState, progress: 0 }));
-      setIsPlaying(false)
-    }
+  // const onPlaying = () => {
+  //   const duration = audioElem.current.duration;
+  //   const ct = audioElem.current.currentTime;
+  //   setAudioTime((prewState) => ({ ...prewState, progress: (ct / duration) * 100, length: duration, }));
+  //   if (audioElem.current.ended) {
+  //     setAudioTime((prewState) => ({ ...prewState, progress: 0 }));
+  //     setIsPlaying(false)
+  //     console.log('render');
+  //   }
 
-  };
-  const checkWidth = (e) => {
-    const width = clickRef.current.clientWidth;
-    const offset = e.nativeEvent.offsetX;
-    const divProgress = (offset / width) * 100;
-    audioElem.current.currentTime = (divProgress / 100) * audioTime.length;
-  };
+  // };
+  // const checkWidth = (e) => {
+  //   const width = clickRef.current.clientWidth;
+  //   const offset = e.nativeEvent.offsetX;
+  //   const divProgress = (offset / width) * 100;
+  //   audioElem.current.currentTime = (divProgress / 100) * audioTime.length;
+  // };
 
-  useEffect(() => {
-    if (isPlaying) {
-      audioElem.current.play();
-    } else {
-      audioElem.current.pause();
-    }
-  }, [isPlaying]);
+  // useEffect(() => {
+  //   if (isPlaying) {
+  //     audioElem.current.play();
+  //   } else {
+  //     audioElem.current.pause();
+  //   }
+  // }, [isPlaying]);
 
-  useEffect(() => {
-    if(audioTime.progress>0){
-      setIsPlaying(false)
-    }
-    setAudioTime((prewState) => ({ ...prewState, progress: 0 }));
-  }, [audio])
+  // useEffect(() => {
+  // if(audioTime.progress>0){
+  //   setIsPlaying(false)
+  // }
+  // setAudioTime((prewState) => ({ ...prewState, progress: 0 }));
+  // }, [audio])
 
 
   return (
     <div>
-      <audio src={audio} ref={audioElem} onTimeUpdate={onPlaying}></audio>
+      {/* <audio src={audio} ref={audioElem} onTimeUpdate={onPlaying}></audio>
       <div
         className="w-full bg-bg h-2 rounded-full"
         onClick={checkWidth}
@@ -64,10 +66,10 @@ const AudioPlayer = ({ audios, ind }) => {
           style={{ width: `${audioTime.progress}%` }}
         ></div>
 
-      </div>
+      </div> */}
       <div className="flex  items-center justify-center mt-5">
         <button onClick={PlayPause}>
-          {isPlaying ? (
+          {(isPlaying && audioId === id) ? (
             <i class="ri-pause-mini-fill ri-3x text-primary"></i>
           ) : (
             <i class="ri-play-mini-fill ri-3x text-primary"></i>
@@ -75,7 +77,7 @@ const AudioPlayer = ({ audios, ind }) => {
         </button>
       </div>
     </div>
-  );
+  )
 };
 
 export default AudioPlayer;
