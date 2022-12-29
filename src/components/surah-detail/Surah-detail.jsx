@@ -17,7 +17,7 @@ const SurahDetail = () => {
     dispatch(getSurahDetailStart());
     try {
       const { data } = await SurahSerive.getSurahDetail(number,author);
-      console.log(data);
+      
       dispatch(getSurahDetailSuccess(data.ayahs));
     } catch (error) {
       dispatch(getSurahDetailFailure());
@@ -44,9 +44,7 @@ const SurahDetail = () => {
     getSurahDetailText();
   }, [author,languages]);
   
-  // useEffect(() => {
-  //   getSurahDetailText();
-  // }, [languages])
+
 
 
 
