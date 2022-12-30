@@ -12,7 +12,7 @@ const SurahDetail = () => {
   const { surahDetailText, languages } = useSelector((state) => state.surahDetailText);
   const { number } = useParams();
   const dispatch = useDispatch();
-  
+
   const getSurahDetail = async () => {
     dispatch(getSurahDetailStart());
     try {
@@ -43,6 +43,7 @@ const SurahDetail = () => {
     getSurahDetail();
     getSurahDetailText();
   }, [author,languages]);
+
   useEffect(() => {
    dispatch(seletedAudio(''))
   }, [])

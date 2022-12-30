@@ -3,6 +3,7 @@
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
+    scroll-behavior: smooth;
     scrollbar-width: auto;
     scrollbar-color: #199F87;
   }

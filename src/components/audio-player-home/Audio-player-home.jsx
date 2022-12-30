@@ -2,16 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { seletedAudio, setIsPlaying, setAudioId } from "../../slice/surahDetail";
 
-const AudioPlayer = ({ audio, isAudio, setIsAudio }) => {
+const AudioPlayer = ({ audio, setIsAudio }) => {
   const [audioTime, setAudioTime] = useState({});
   const { isPlaying, surahDetail, audioId } = useSelector(state => state.surahDetail)
   const dispatch = useDispatch()
   const audioElem = useRef();
   const clickRef = useRef();
 
-
   const PlayPause = () => {
-    // dispatch(seletedAudio(audios[ind]?.audio))
+
     dispatch(setIsPlaying(!isPlaying))
     console.log(audioElem.current.paused);
   };
@@ -44,7 +43,9 @@ const AudioPlayer = ({ audio, isAudio, setIsAudio }) => {
 
   const closeAudio = () => {
     setIsAudio(false)
-    setIsPlaying(false);
+    dispatch(setIsPlaying(false))
+    dispatch(seletedAudio(''))
+
   }
 
   useEffect(() => {
@@ -57,7 +58,6 @@ const AudioPlayer = ({ audio, isAudio, setIsAudio }) => {
 
   useEffect(() => {
     audioElem.current.play();
-
   }, [audio])
 
 

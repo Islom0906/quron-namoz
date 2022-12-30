@@ -5,7 +5,7 @@ import { Navbar, Sidebar, Surah, SurahDetail, AudioPlayerHome } from "../";
 
 function App() {
   const [isAudio, setIsAudio] = useState(false)
-  const { audio } = useSelector(state => state.surahDetail)
+  const { audio,isPlaying } = useSelector(state => state.surahDetail)
 
  useEffect(() => {
    if(audio!==""){
@@ -20,7 +20,7 @@ function App() {
       <Navbar />
       <Sidebar />
       {isAudio &&
-        <AudioPlayerHome audio={audio} isAudio={isAudio} setIsAudio={setIsAudio} />
+        <AudioPlayerHome audio={audio}  setIsAudio={setIsAudio} />
       }
       <main className="pt-[104px] sm:pl-[104px] pl-10 sm:pb-10 pb-20 pr-10">
         <Routes>
