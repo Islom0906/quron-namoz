@@ -10,6 +10,8 @@ function App() {
  useEffect(() => {
    if(audio!==""){
     setIsAudio(true)
+   }else{
+    setIsAudio(false)
    }
  }, [audio])
  

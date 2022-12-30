@@ -9,15 +9,12 @@ const AudioPlayer = ({ audios, ind, }) => {
   const dispatch = useDispatch()
   // const audioElem = useRef();
   // const clickRef = useRef();
-  console.log(isPlaying);
-
   const PlayPause = () => {
     dispatch(seletedAudio(audios[ind]?.audio))
     dispatch(setIsPlaying(!isPlaying))
     dispatch(setAudioId(audios[ind]?.number))
-    setId(audios[ind]?.number)
+    // setId(audios[ind]?.number)
   };
-
 
   // const onPlaying = () => {
   //   const duration = audioElem.current.duration;
@@ -69,7 +66,7 @@ const AudioPlayer = ({ audios, ind, }) => {
       </div> */}
       <div className="flex  items-center justify-center mt-5">
         <button onClick={PlayPause}>
-          {(isPlaying && audioId === id) ? (
+          {(isPlaying && audioId === (ind+1)) ? (
             <i class="ri-pause-mini-fill ri-3x text-primary"></i>
           ) : (
             <i class="ri-play-mini-fill ri-3x text-primary"></i>

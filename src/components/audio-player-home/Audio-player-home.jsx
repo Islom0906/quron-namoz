@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { seletedAudio, setIsPlaying,setAudioId } from "../../slice/surahDetail";
+import { seletedAudio, setIsPlaying, setAudioId } from "../../slice/surahDetail";
 
 const AudioPlayer = ({ audio, isAudio, setIsAudio }) => {
   const [audioTime, setAudioTime] = useState({});
-  const { isPlaying,surahDetail,audioId } = useSelector(state => state.surahDetail)
+  const { isPlaying, surahDetail, audioId } = useSelector(state => state.surahDetail)
   const dispatch = useDispatch()
   const audioElem = useRef();
   const clickRef = useRef();
 
-console.log(isPlaying);
 
   const PlayPause = () => {
     // dispatch(seletedAudio(audios[ind]?.audio))
@@ -24,9 +23,15 @@ console.log(isPlaying);
     setAudioTime((prewState) => ({ ...prewState, progress: (ct / duration) * 100, length: duration, }));
     if (audioElem.current.ended) {
       setAudioTime((prewState) => ({ ...prewState, progress: 0 }));
-      dispatch(seletedAudio(surahDetail[audioId]?.audio))
-      dispatch(setAudioId(audioId+1))
-      dispatch(setIsPlaying(false))
+      if (surahDetail.length - 1 >= audioId) {
+        dispatch(seletedAudio(surahDetail[audioId]?.audio))
+      } else {
+        dispatch(setIsPlaying(false))
+        dispatch(seletedAudio(''))
+      }
+      if (surahDetail.length > audioId) {
+        dispatch(setAudioId(audioId + 1))
+      }
     }
 
   };
