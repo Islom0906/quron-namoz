@@ -12,10 +12,10 @@ const AudioPlayer = ({ audios, ind, }) => {
   const PlayPause = () => {
     dispatch(seletedAudio(audios[ind]?.audio))
     dispatch(setIsPlaying(!isPlaying))
-    dispatch(setAudioId(audios[ind]?.number))
+    dispatch(setAudioId(ind+1))
     // setId(audios[ind]?.number)
   };
-
+console.log(ind,audioId);
   // const onPlaying = () => {
   //   const duration = audioElem.current.duration;
   //   const ct = audioElem.current.currentTime;

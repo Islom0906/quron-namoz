@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AuthorAudio, SurahDetailCard } from "../";
 import SurahSerive from "../../service/surah";
-import { getSurahDetailFailure, getSurahDetailStart, getSurahDetailSuccess, selectedAuthor, } from "../../slice/surahDetail";
+import { getSurahDetailFailure, getSurahDetailStart, getSurahDetailSuccess, selectedAuthor, seletedAudio, } from "../../slice/surahDetail";
 import { getSurahDetailTextFailure, getSurahDetailTextStart, getSurahDetailTextSuccess, } from "../../slice/surahDetailText";
 import authorJson from './author-audio.json'
 
@@ -43,6 +43,10 @@ const SurahDetail = () => {
     getSurahDetail();
     getSurahDetailText();
   }, [author,languages]);
+  useEffect(() => {
+   dispatch(seletedAudio(''))
+  }, [])
+  
   
 
 
