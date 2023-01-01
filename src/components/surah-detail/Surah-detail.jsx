@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AuthorAudio, SurahDetailCard } from "../";
 import SurahSerive from "../../service/surah";
-import { getSurahDetailFailure, getSurahDetailStart, getSurahDetailSuccess, selectedAuthor, seletedAudio, } from "../../slice/surahDetail";
+import { getSurahDetailFailure, getSurahDetailStart, getSurahDetailSuccess, selectedAuthor, seletedAudio, setAudioId, setIsPlaying, } from "../../slice/surahDetail";
 import { getSurahDetailTextFailure, getSurahDetailTextStart, getSurahDetailTextSuccess, } from "../../slice/surahDetailText";
 import authorJson from './author-audio.json'
 
@@ -46,6 +46,9 @@ const SurahDetail = () => {
 
   useEffect(() => {
    dispatch(seletedAudio(''))
+   dispatch(setIsPlaying(false))
+   dispatch(setAudioId(''))
+   window.scrollTo(0,0)
   }, [])
   
   
@@ -55,7 +58,7 @@ const SurahDetail = () => {
 
   return (
     <div >
-    <div className="flex items-center space-x-10 mb-10 overflow-x-auto">
+    <div className="flex items-center space-x-10 mb-10 overflow-x-auto ">
     {authorJson.map(item=>(
       <AuthorAudio author={item} authorAudio={authorAudioHandler}/>
     ))}

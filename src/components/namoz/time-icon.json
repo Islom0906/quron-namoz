@@ -1,0 +1,33 @@
+[
+  {
+    "icon": "ri-moon-line",
+    "time":"",
+    "timeName":"tong_saharlik"
+  },
+  {
+    "icon": "ri-sun-cloudy-line",
+    "time":"",
+    "timeName":"quyosh"
+  },
+  {
+    "icon": "ri-sun-line",
+    "time":"",
+    "timeName":"peshin"
+  },
+  {
+    "icon": "ri-sun-foggy-line",
+    "time":"",
+    "timeName":"asr"
+  },
+  {
+    "icon": "ri-moon-cloudy-line",
+    "time":"",
+    "timeName":"shom_iftor"
+  },
+  {
+    "icon": "ri-moon-clear-line",
+    "time":"",
+    "timeName":"hufton"
+  }
+]
+

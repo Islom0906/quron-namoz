@@ -10,7 +10,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to={"/" } className="flex items-center justify-center w-10 h-10">
+          <Link to={"/namoz" } className="flex items-center justify-center w-10 h-10">
             <i class="ri-user-smile-line ri-lg text-secondary "></i>
           </Link>
         </li>
