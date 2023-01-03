@@ -10,7 +10,7 @@ moment.locale('uz')
 
 const Namoz = () => {
   const [timeNamoz, setTimeNamoz] = useState([])
-  const [width, setWidth] = useState(0)
+  const [prayerChange, setPrayerChange] = useState([])
   const [liveClock, setLiveClock] = useState('')
   const { times } = useSelector(state => state.namoz)
   const dispatch = useDispatch()
@@ -18,8 +18,9 @@ const Namoz = () => {
   const getNamoz = async () => {
     dispatch(getNamozStart())
     try {
-      const { times } = await NamozService.getNamoz()
-      dispatch(getNamozSuccess(times))
+      const { today } = await NamozService.getNamoz()
+      dispatch(getNamozSuccess(today))
+
     } catch (error) {
       dispatch(getNamozFaliure())
       console.log(error);
@@ -38,55 +39,78 @@ const Namoz = () => {
     setTimeNamoz(newTimeArr)
   }
 
-  const widthHandler=()=>{
-    let hour=moment().format('LT')
-    let splitHour=hour.split(':')
-    let hourChangeMinut=splitHour[0]*60+Number(splitHour[1])
-    console.log(hourChangeMinut);
-    setWidth(0.069*hourChangeMinut)
+  const prayerTimeChangeMinut = () => {
+    let collectionMinut = []
+    for (let i = 0; i < timeNamoz.length; i++) {
+      const prayerSplitHour = timeNamoz[i].time.split(':')
+      const prayerMinutCalculation = prayerSplitHour[0] * 60 + Number(prayerSplitHour[1])
+      collectionMinut.push(prayerMinutCalculation)
+    }
+    setPrayerChange(collectionMinut)
+  }
+
+  const prayerTimeIsActive = () => {
+    let arr = []
+    const hour = moment().format('LT')
+    const splitHour = hour.split(':')
+    const minutCalculation = splitHour[0] * 60 + Number(splitHour[1])
+
+    for (let i = 0; i < timeNamoz.length; i++) {
+      if (prayerChange[i] < minutCalculation && prayerChange[i + 1] > minutCalculation) {
+        console.log('asdas');
+        timeNamoz[i].isActive = true
+      }else if ( minutCalculation>prayerChange[5] || minutCalculation<prayerChange[0] ) {
+        console.log(minutCalculation);
+        timeNamoz[5].isActive = true
+      } 
+      else {
+          timeNamoz[i].isActive = false
+      }
+      
+
+      arr.push(timeNamoz[i])
+    }
+    console.log(arr);
+    setTimeNamoz(arr)
   }
 
   useEffect(() => {
     getNamoz()
-    widthHandler()
 
     setInterval(() => {
       setLiveClock(moment().format('LTS'))
     }, 1000);
-    setInterval(widthHandler, 60000);
   }, [])
+
+
+
+
   useEffect(() => {
+    prayerTimeChangeMinut()
+    prayerTimeIsActive()
     renderTime()
   }, [times])
 
 
   return (
-    <div className="w-full h-full flex flex-col items-center space-y-10" >
-      <h1 className="text-primary  text-3xl">Shom</h1>
-      
-
-
-      <span className="text-black font-bold text-5xl">{liveClock}</span>
-      <p className="text-primary  text-3xl">Tashkent</p>
-      <div className="relative w-full h-2 border-primary border rounded-full ">
-        <div className="  h-full  bg-primary rounded-full" style={{width:`${width}%`}}></div>
-        <div className="absolute -top-3 w-full z-10 ">
-          {
-            timeNamoz.map(time => (
-              <div className="absolute top-0 left-[33%] flex flex-col items-center space-y-5 bg-bg">
-                <div className="border-primary border w-8 h-8 rounded-full flex items-center justify-center">
-                  <i class={`${time.icon} text-primary`}></i>
-                </div>
-                <span className="text-primary  text-xl">{time.time}</span>
-              </div>
-            ))
-          }
-
-
-        </div>
+    <div className="w-full h-full space-y-10" >
+      <div className='flex flex-col items-center space-y-10'>
+        <h1 className="text-primary  text-3xl">Shom</h1>
+        <span className="text-black font-bold text-5xl">{liveClock}</span>
+        <p className="text-primary  text-3xl">Tashkent</p>
       </div>
+      <div className='grid md:grid-cols-2 gap-5'>
+        {
+          timeNamoz.map(item => (
+            <div className={`${item.isActive ? 'bg-primary' : 'bg-white'}  rounded-lg p-5 shadow-xl flex items-center justify-between`}>
+              <span className={`font-bold text-xl  ${item.isActive ? 'text-white' : 'text-black'}`}>{item.time}</span>
+              <p className={`font-bold text-xl ${item.isActive ? 'text-white' : 'text-black'} opacity-50`}>{item.timeNameUz}</p>
 
-    
+            </div>
+
+          ))
+        }
+      </div>
     </div>
   )
 }
