@@ -7,12 +7,12 @@ const Navbar = () => {
     <div className="flex items-center  w-full bg-white fixed top-0 left-0 z-10 space-x-5 pr-5">
       <div className="bg-primary h-16 w-16 flex items-center justify-center">
         <Link to={'/'}>
-        <i class="ri-book-open-line ri-xl text-white"></i>
+        <i className="ri-book-open-line ri-xl text-white"></i>
         </Link>
       </div>
       <div className="flex items-center justify-between w-full">
       <form className="flex items-center py-5  pr-7">
-        <i class="ri-search-line ri-lg text-primary"></i>
+        <i className="ri-search-line ri-lg text-primary"></i>
         <input
           type="text"
           placeholder="Search here for"

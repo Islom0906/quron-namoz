@@ -6,12 +6,12 @@ const Sidebar = () => {
       <ul className="flex sm:flex-col w-full h-full flex-row items-center sm:justify-start justify-evenly sm:mt-10 sm:space-y-5">
         <li>
           <Link to={"/"} className="flex items-center justify-center w-10 h-10">
-            <i class="ri-book-open-fill ri-lg text-secondary"></i>
+            <i className="ri-book-open-fill ri-lg text-secondary"></i>
           </Link>
         </li>
         <li>
           <Link to={"/namoz" } className="flex items-center justify-center w-10 h-10">
-            <i class="ri-user-smile-line ri-lg text-secondary "></i>
+            <i className="ri-user-smile-line ri-lg text-secondary "></i>
           </Link>
         </li>
       </ul>

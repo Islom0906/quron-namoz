@@ -1,41 +1,35 @@
 [
   {
-    "icon": "ri-moon-line",
     "time":"",
     "isActive":"false",
     "timeName":"Fajr",
     "timeNameUz":"Bomdod"
   },
   {
-    "icon": "ri-sun-cloudy-line",
     "time":"",
     "isActive":"false",
     "timeName":"Sunrise",
     "timeNameUz":"Quyosh"
   },
   {
-    "icon": "ri-sun-line",
     "time":"",
     "isActive":"false",
     "timeName":"Dhuhr",
     "timeNameUz":"Peshin"
   },
   {
-    "icon": "ri-sun-foggy-line",
     "time":"",
     "isActive":"false",
     "timeName":"Asr",
     "timeNameUz":"Asr"
   },
   {
-    "icon": "ri-moon-cloudy-line",
     "time":"",
     "isActive":"false",
     "timeName":"Maghrib",
     "timeNameUz":"Shom"
   },
   {
-    "icon": "ri-moon-clear-line",
     "time":"",
     "isActive":"false",
     "timeName":"Isha'a",

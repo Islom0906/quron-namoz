@@ -19,6 +19,7 @@ const Namoz = () => {
     dispatch(getNamozStart())
     try {
       const { today } = await NamozService.getNamoz()
+     
       dispatch(getNamozSuccess(today))
 
     } catch (error) {
@@ -56,40 +57,38 @@ const Namoz = () => {
     const minutCalculation = splitHour[0] * 60 + Number(splitHour[1])
 
     for (let i = 0; i < timeNamoz.length; i++) {
-      if (prayerChange[i] < minutCalculation && prayerChange[i + 1] > minutCalculation) {
-        console.log('asdas');
+
+      if (prayerChange[i] <= minutCalculation && prayerChange[i + 1] > minutCalculation) {
         timeNamoz[i].isActive = true
-      }else if ( minutCalculation>prayerChange[5] || minutCalculation<prayerChange[0] ) {
-        console.log(minutCalculation);
+      }else if(prayerChange[5] <= minutCalculation ||prayerChange[0] > minutCalculation){
         timeNamoz[5].isActive = true
-      } 
+      }
       else {
           timeNamoz[i].isActive = false
       }
-      
-
       arr.push(timeNamoz[i])
     }
-    console.log(arr);
+
     setTimeNamoz(arr)
   }
 
   useEffect(() => {
     getNamoz()
-
     setInterval(() => {
       setLiveClock(moment().format('LTS'))
     }, 1000);
   }, [])
 
-
-
-
   useEffect(() => {
-    prayerTimeChangeMinut()
-    prayerTimeIsActive()
     renderTime()
+      prayerTimeChangeMinut()
   }, [times])
+
+  useEffect(()=>{
+    prayerTimeIsActive()
+
+  },[prayerChange])
+
 
 
   return (
@@ -101,8 +100,8 @@ const Namoz = () => {
       </div>
       <div className='grid md:grid-cols-2 gap-5'>
         {
-          timeNamoz.map(item => (
-            <div className={`${item.isActive ? 'bg-primary' : 'bg-white'}  rounded-lg p-5 shadow-xl flex items-center justify-between`}>
+          timeNamoz.map((item,index) => (
+            <div key={index} className={`${item.isActive ? 'bg-primary' : 'bg-white'}  rounded-lg p-5 shadow-xl flex items-center justify-between`}>
               <span className={`font-bold text-xl  ${item.isActive ? 'text-white' : 'text-black'}`}>{item.time}</span>
               <p className={`font-bold text-xl ${item.isActive ? 'text-white' : 'text-black'} opacity-50`}>{item.timeNameUz}</p>
 
