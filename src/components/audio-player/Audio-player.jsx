@@ -21,9 +21,9 @@ const AudioPlayer = ({ audios, ind, }) => {
       <div className="flex  items-center justify-center mt-5">
         <button onClick={PlayPause}>
           {(isPlaying && audioId === (ind + 1)) ? (
-            <i class="ri-pause-mini-fill ri-3x text-primary"></i>
+            <i className="ri-pause-mini-fill ri-3x text-primary"></i>
           ) : (
-            <i class="ri-play-mini-fill ri-3x text-primary"></i>
+            <i className="ri-play-mini-fill ri-3x text-primary"></i>
           )}
         </button>
       </div>

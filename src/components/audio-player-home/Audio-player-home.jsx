@@ -68,9 +68,9 @@ const AudioPlayer = ({ audio, setIsAudio }) => {
         <div className="flex  items-center mt-2">
           <button onClick={PlayPause}>
             {isPlaying ? (
-              <i class="ri-pause-mini-fill ri-xl text-white"></i>
+              <i className="ri-pause-mini-fill ri-xl text-white"></i>
             ) : (
-              <i class="ri-play-mini-fill ri-xl text-white"></i>
+              <i className="ri-play-mini-fill ri-xl text-white"></i>
             )}
           </button>
         </div>
@@ -84,7 +84,7 @@ const AudioPlayer = ({ audio, setIsAudio }) => {
             style={{ width: `${audioTime.progress}%` }}
           ></div>
         </div>
-        <i class="ri-close-line ri-xl text-white cursor-pointer" onClick={closeAudio}></i>
+        <i className="ri-close-line ri-xl text-white cursor-pointer" onClick={closeAudio}></i>
       </div>
     </div>
   );

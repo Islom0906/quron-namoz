@@ -41,8 +41,13 @@ const SurahDetail = () => {
 
   useEffect(() => {
     getSurahDetail();
+  }, [author]);
+  
+  useEffect(()=>{
+    console.log('render');
+
     getSurahDetailText();
-  }, [author,languages]);
+  },[languages])
 
   useEffect(() => {
    dispatch(seletedAudio(''))
@@ -60,7 +65,7 @@ const SurahDetail = () => {
     <div >
     <div className="flex items-center space-x-10 mb-10 overflow-x-auto ">
     {authorJson.map(item=>(
-      <AuthorAudio author={item} authorAudio={authorAudioHandler}/>
+      <AuthorAudio author={item} key={item.name} authorAudio={authorAudioHandler}/>
     ))}
       
       
