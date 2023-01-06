@@ -2,37 +2,37 @@
   {
     "time":"",
     "isActive":"false",
-    "timeName":"Fajr",
+    "timeName":"tong_saharlik",
     "timeNameUz":"Bomdod"
   },
   {
     "time":"",
     "isActive":"false",
-    "timeName":"Sunrise",
+    "timeName":"quyosh",
     "timeNameUz":"Quyosh"
   },
   {
     "time":"",
     "isActive":"false",
-    "timeName":"Dhuhr",
+    "timeName":"peshin",
     "timeNameUz":"Peshin"
   },
   {
     "time":"",
     "isActive":"false",
-    "timeName":"Asr",
+    "timeName":"asr",
     "timeNameUz":"Asr"
   },
   {
     "time":"",
     "isActive":"false",
-    "timeName":"Maghrib",
+    "timeName":"shom_iftor",
     "timeNameUz":"Shom"
   },
   {
     "time":"",
     "isActive":"false",
-    "timeName":"Isha'a",
+    "timeName":"hufton",
     "timeNameUz":"Xufton"
   }
 ]

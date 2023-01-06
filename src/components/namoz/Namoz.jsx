@@ -24,9 +24,8 @@ const Namoz = () => {
   const getNamoz = async () => {
     dispatch(getNamozStart())
     try {
-      const { today } = await NamozService.getNamoz()
-
-      dispatch(getNamozSuccess(today))
+      const {times}= await NamozService.getNamoz()
+      dispatch(getNamozSuccess(times))
 
     } catch (error) {
       dispatch(getNamozFaliure())
@@ -35,7 +34,6 @@ const Namoz = () => {
   }
 
   useMemo(() => {
-
     const newTimeArr = []
     timeIcon.forEach(time => {
       const timeName = time.timeName
