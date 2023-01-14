@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   isLoading: false,
   surah: [],
+  search:"",
   error: null
 }
 
@@ -21,9 +22,12 @@ export const surahSlice = createSlice({
     getSurahFailure: (state) => {
       state.isLoading = false
       state.error = 'Get surah error'
+    },
+    searchSurah:(state,{payload})=>{
+      state.search=payload
     }
   }
 })
 
-export const { getSurahFailure, getSurahStart, getSurahSuccess } = surahSlice.actions
+export const { getSurahFailure, getSurahStart, getSurahSuccess, searchSurah} = surahSlice.actions
 export default surahSlice.reducer
