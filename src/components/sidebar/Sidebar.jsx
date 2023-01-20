@@ -12,7 +12,7 @@ const Sidebar = () => {
         </li>
         <li>
           <Link to={"/namoz" } className="flex flex-col items-center justify-center w-10 h-10">
-          <img src="./assets/prayer-time.svg" alt="" />
+          <img className="w-5 h-5"src="./assets/prayer-time.svg" alt="" />
             <p>Namoz</p>
           </Link>
         </li>
